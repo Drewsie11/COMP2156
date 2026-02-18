@@ -18,11 +18,22 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x" # Use the appropriate Node.js version for your project
+          node-version: "22.x" # Use the appropriate Node.js version for your project
 
+      # Cache Node.js modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: node_modules # Take any latest cache if failed to find it for current package-lock.json  
+          
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      - name: Fix react-scripts permissions
+        run: chmod +x node_modules/.bin/react-scripts
 
       # Build React app
       - name: Build the app
