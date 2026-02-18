@@ -1,6 +1,7 @@
 {
   "name": "comp2156",
   "version": "1.0.0",
+  "homepage": "https://Drewsie11.github.io/COMP2156",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,6 +9,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -45,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
